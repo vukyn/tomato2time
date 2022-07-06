@@ -1,0 +1,51 @@
+/* Variables */
+$orange600: #FB8C00;
+
+/* Colors */
+.orange600 {
+    color: $orange600;
+}
+
+/* Sizes */
+.md-18 {
+    font-size: 18px;
+}
+
+.md-24 {
+    font-size: 24px;
+}
+
+.md-36 {
+    font-size: 36px;
+}
+
+.md-48 {
+    font-size: 48px;
+}
+
+
+/* Icons */
+.skip-icon {
+    opacity: 0.9;
+
+    &:hover {
+        opacity: 0.7;
+    }
+}
+
+.add-icon {
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.remove-icon {
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+hr.solid {
+    border-top: 1px solid black;
+    opacity: 0.1;
+}
