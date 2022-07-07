@@ -5,6 +5,7 @@ interface IDivider {
 }
 
 const Divider = (props: IDivider) => {
+    // eslint-disable-next-line no-useless-concat
     const borderTop = props.size + 'px ' + 'solid' + ' ' + props.color;
     return (
         <hr style={{opacity: props.opacity, borderTop: borderTop}}></hr>
