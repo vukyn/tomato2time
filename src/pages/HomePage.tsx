@@ -4,7 +4,7 @@ import { Container } from '@nextui-org/react';
 
 const HomePage = () => {
     return (
-        <Container id='container' display='flex' justify='center' alignItems='center'>
+        <Container id='container' display='flex' direction='column' justify='center' alignItems='center'>
             <Timer />
             <TaskList />
         </Container>

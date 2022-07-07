@@ -1,9 +1,7 @@
 import { Button, styled } from '@nextui-org/react';
 
-const HeaderButton = styled(Button, {
+const TransparentButton = styled(Button, {
     cursor: 'pointer',
-    marginLeft: '10px',
-    padding: '8px 12px',
     opacity: 0.9,
     display: 'flex',
     alignItems: 'center',
@@ -11,6 +9,15 @@ const HeaderButton = styled(Button, {
     textAlign: 'center',
     transition: 'color 0.5s ease-in-out 0s',
     variants: {
+        boxmodel: {
+            headerbtn: {
+                marginLeft: '10px',
+                padding: '8px 12px',
+            },
+            morebtn: {
+                padding: '0px',
+            }
+        },
         border: {
             primary: {
                 border: 'none',
@@ -19,9 +26,13 @@ const HeaderButton = styled(Button, {
             }
         },
         size: {
-            primary: {
+            headerbtn: {
                 height: '36px',
                 minWidth: '70px',
+            },
+            morebtn: {
+                height: '36px',
+                minWidth: '36px',
             }
         },
         font: {
@@ -43,4 +54,4 @@ const HeaderButton = styled(Button, {
     }
 });
 
-export default HeaderButton;
+export default TransparentButton;

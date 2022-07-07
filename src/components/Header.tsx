@@ -1,4 +1,5 @@
-import HeaderButton from "./buttons/HeaderButton";
+import Divider from "./Divider";
+import TransparentButton from "./buttons/TransparentButton";
 import { Container, Row, Col, Text, styled } from "@nextui-org/react";
 
 const LogoText = styled(Text, {
@@ -13,22 +14,22 @@ const Header = () => {
     return (
         <Container id='header' css={{ maxWidth: '620px', margin: 'auto', padding: '0px 12px' }}>
             <Row justify='space-between' align='center'>
-                <Col span={4}><LogoText>25 plus 5</LogoText></Col>
+                <Col span={5}><LogoText>tomato2time</LogoText></Col>
                 <Col>
                     <Container display='flex' justify='flex-end'>
-                        <HeaderButton ripple={false} border='primary' size='primary' color='primary' font='primary'>
-                            <i className='material-icons md-18' style={{margin: '3px 4px 0px 0px'}}>assessment</i> Report
-                        </HeaderButton>
-                        <HeaderButton ripple={false} border='primary' size='primary' color='primary' font='primary'>
-                            <i className='material-icons md-18' style={{margin: '3px 4px 0px 0px'}}>settings</i> Setting
-                        </HeaderButton>
-                        <HeaderButton ripple={false} border='primary' size='primary' color='primary' font='primary'>
-                            <i className='material-icons md-18' style={{margin: '3px 4px 0px 0px'}}>account_circle</i> Login
-                        </HeaderButton>
+                        <TransparentButton ripple={false} boxmodel='headerbtn' border='primary' size='headerbtn' color='primary' font='primary'>
+                            <i className='material-icons md-18' style={{ margin: '3px 4px 0px 0px' }}>assessment</i> Report
+                        </TransparentButton>
+                        <TransparentButton ripple={false} boxmodel='headerbtn' border='primary' size='headerbtn' color='primary' font='primary'>
+                            <i className='material-icons md-18' style={{ margin: '3px 4px 0px 0px' }}>settings</i> Setting
+                        </TransparentButton>
+                        <TransparentButton ripple={false} boxmodel='headerbtn' border='primary' size='headerbtn' color='primary' font='primary'>
+                            <i className='material-icons md-18' style={{ margin: '3px 4px 0px 0px' }}>account_circle</i> Login
+                        </TransparentButton>
                     </Container>
                 </Col>
             </Row>
-            <hr className="solid"></hr>
+            <Divider color='black' opacity={0.1} size={1}/>
         </Container>
     );
 }
