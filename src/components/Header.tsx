@@ -1,4 +1,4 @@
-import Divider from "./Divider";
+import Divider from "./divider/Divider";
 import TransparentButton from "./buttons/TransparentButton";
 import { Container, Row, Col, Text, styled } from "@nextui-org/react";
 

@@ -1,8 +1,8 @@
-import Divider from "./Divider";
+import Divider from "./divider/Divider";
 import AppText from "./texts/AppText";
 import AddTaskButton from "./buttons/AddTaskButton";
-import { Container, Row } from "@nextui-org/react";
-import TransparentButton from "./buttons/TransparentButton";
+import { Container, Row, Spacer } from "@nextui-org/react";
+import TaskMenu from "./TaskMenu";
 
 const TaskList = () => {
     return (
@@ -10,15 +10,14 @@ const TaskList = () => {
             <Row id='task-header'>
                 <AppText bold='true' size='md'>Tasks</AppText>
                 <Container display='flex' justify='flex-end' css={{ paddingRight: '0px' }}>
-                    <TransparentButton ripple={false} boxmodel='morebtn' border='primary' size='morebtn' color='primary' font='primary'>
-                        <i className='material-icons md-24'>more_vert</i>
-                    </TransparentButton>
+                    <TaskMenu />
                 </Container>
             </Row>
             <Divider color='white' opacity={0.5} size={2} />
             <AddTaskButton border='primary' size='primary' color='primary' animated={false}>
                 <i className='material-icons md-18' style={{ marginRight: '5px' }}>add_circle_outline</i> Add Task
             </AddTaskButton>
+            <Spacer y={1} />
         </Container>
     );
 }
