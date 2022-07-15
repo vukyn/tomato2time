@@ -1,6 +1,6 @@
 import { Button, styled } from '@nextui-org/react';
 
-const PromptButton = styled(Button, {
+const TextButton = styled(Button, {
     variants: {
         size: {
             primary: {
@@ -16,10 +16,15 @@ const PromptButton = styled(Button, {
         color: {
             primary: {
                 color: 'rgb(217, 85, 80)',
-                backgroundColor: 'white'
+                backgroundColor: 'inherit'
+            }
+        },
+        bold: {
+            true: {
+                fontWeight: 'bold'
             }
         }
     }
 });
 
-export default PromptButton;
+export default TextButton;

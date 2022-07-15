@@ -18,8 +18,11 @@ const AppText = styled(Text, {
             },
         },
         size: {
-            sm: {
+            xs: {
                 fontSize: '14px'
+            },
+            sm: {
+                fontSize: '16px'
             },
             md: {
                 fontSize: '18px'
@@ -27,7 +30,7 @@ const AppText = styled(Text, {
             lg: {
                 fontSize: '24px'
             },
-        }
+        },
     }
 });
 

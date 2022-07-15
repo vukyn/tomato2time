@@ -1,5 +1,5 @@
 import { Modal, Text } from "@nextui-org/react";
-import PromptButton from "../buttons/PromptButton";
+import TextButton from "../buttons/TextButton";
 
 interface IPromptModal {
     headerText: string;
@@ -21,12 +21,12 @@ const PromptModal = (props: IPromptModal) => {
                 <Text h5 color="neutral">{props.bodyText}</Text>
             </Modal.Body>
             <Modal.Footer>
-                <PromptButton size='primary' color="primary" onClick={props.close}>
+                <TextButton size='primary' color="primary" onClick={props.close}>
                     {props.cancelText}
-                </PromptButton>
-                <PromptButton size='primary' color="primary" onClick={props.skip}>
+                </TextButton>
+                <TextButton size='primary' color="primary" onClick={props.skip}>
                     {props.confirmText}
-                </PromptButton>
+                </TextButton>
             </Modal.Footer>
         </Modal>
     );

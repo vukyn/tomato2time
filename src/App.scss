@@ -48,3 +48,18 @@ $orange600: #FB8C00;
         opacity: 0.8;
     }
 }
+
+/* Inputs */
+input::placeholder {
+    font-style: italic,
+}
+
+/* Hide input number spin button */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}

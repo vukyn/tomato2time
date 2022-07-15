@@ -1,4 +1,4 @@
-import Divider from "../divider/Divider";
+import Divider from "../dividers/Divider";
 import { Popover } from "@nextui-org/react";
 import TaskMenuText from "../texts/TaskMenuText";
 import TaskMenuButton from "../buttons/TaskMenuButton";
