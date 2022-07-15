@@ -1,17 +1,25 @@
+import AddTaskButton from "../buttons/AddTaskButton";
+import { Container, Row } from "@nextui-org/react";
 import Divider from "../dividers/Divider";
 import AppText from "../texts/AppText";
-import AddTaskButton from "../buttons/AddTaskButton";
-import { Container, Row, Spacer } from "@nextui-org/react";
-import TaskMenu from "./TaskMenu";
 import TaskDialog from "./TaskDialog";
+import TaskMenu from "./TaskMenu";
 import { useState } from "react";
+
+interface ITodoTask {
+    taskName: string;
+    estPomodoros: number;
+    taskNote: string;
+    isFinished: boolean;
+}
 
 const TaskList = () => {
 
     const [isAddTask, setIsAddTask] = useState(false);
+    const [todoTasks, setTodoTasks] = useState<ITodoTask[]>([]);
 
-    const addTaskHandler = () => {
-        setIsAddTask(!isAddTask);
+    const addTodoTaskHandler = (todoTask: ITodoTask) => {
+        setTodoTasks([...todoTasks, todoTask]);
     }
 
     return (
@@ -25,12 +33,12 @@ const TaskList = () => {
             <Divider color='white' opacity={0.5} size={2} />
             {
                 isAddTask ?
-                    <TaskDialog addTask={addTaskHandler} /> :
-                    <AddTaskButton border='primary' size='primary' color='primary' animated={false} onClick={addTaskHandler}>
+                    <TaskDialog todoTasks={todoTasks} addTodoTask={addTodoTaskHandler} closeTaskDialog={() => setIsAddTask(false)} /> :
+                    <AddTaskButton border='primary' size='primary' color='primary' animated={false} onClick={() => setIsAddTask(true)}>
                         <i className='material-icons md-18' style={{ marginRight: '5px' }}>add_circle_outline</i> Add Task
                     </AddTaskButton>
             }
-        </Container>
+        </Container >
     );
 }
 
