@@ -2,10 +2,10 @@ import { useRef } from 'react';
 import useSound from 'use-sound';
 import { useTimer } from 'use-timer';
 import { Row, Col, Text, styled } from "@nextui-org/react";
-import CountdownButton from './buttons/CountdownButton';
-import SkipIconButton from './icon-buttons/SkipIconButton';
-import AddIconButton from "./icon-buttons/AddIconButton";
-import RemoveIconButton from "./icon-buttons/RemoveIconButton";
+import CountdownButton from '../buttons/CountdownButton';
+import SkipIconButton from '../icon-buttons/SkipIconButton';
+import AddIconButton from "../icon-buttons/AddIconButton";
+import RemoveIconButton from "../icon-buttons/RemoveIconButton";
 
 // Constants
 const PODOMORO_TIME = 1500;

@@ -1,5 +1,5 @@
-import Timer from '../components/Timer';
-import TaskList from '../components/TaskList';
+import Timer from '../components/Timer/Timer';
+import TaskList from '../components/Task/TaskList';
 import { Container } from '@nextui-org/react';
 
 const HomePage = () => {

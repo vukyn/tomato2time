@@ -1,5 +1,5 @@
 import { Row, Col } from "@nextui-org/react";
-import TabButton from './buttons/TabButton';
+import TabButton from '../buttons/TabButton';
 
 interface ITimerHeader {
     tab: string;

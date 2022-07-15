@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import TimerHeader from './TimerHeader';
 import TimerBody from './TimerBody';
-import AppText from "./texts/AppText";
+import AppText from "../texts/AppText";
 import { Container, Card, Spacer, Row } from '@nextui-org/react';
 
 const Timer = () => {

@@ -1,6 +1,6 @@
-import Divider from "./divider/Divider";
-import AppText from "./texts/AppText";
-import AddTaskButton from "./buttons/AddTaskButton";
+import Divider from "../divider/Divider";
+import AppText from "../texts/AppText";
+import AddTaskButton from "../buttons/AddTaskButton";
 import { Container, Row, Spacer } from "@nextui-org/react";
 import TaskMenu from "./TaskMenu";
 

@@ -1,8 +1,8 @@
-import Divider from "./divider/Divider";
+import Divider from "../divider/Divider";
 import { Popover } from "@nextui-org/react";
-import TaskMenuText from "./texts/TaskMenuText";
-import TaskMenuButton from "./buttons/TaskMenuButton";
-import TransparentButton from "./buttons/TransparentButton";
+import TaskMenuText from "../texts/TaskMenuText";
+import TaskMenuButton from "../buttons/TaskMenuButton";
+import TransparentButton from "../buttons/TransparentButton";
 
 
 const TaskMenu = () => {
