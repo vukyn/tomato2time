@@ -10,7 +10,6 @@ const TextButton = styled(Button, {
         font: {
             primary: {
                 fontSize: '15px',
-                fontWeight: 'bold',
             }
         },
         color: {

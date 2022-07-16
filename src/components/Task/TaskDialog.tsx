@@ -1,4 +1,4 @@
-import { Card, Input, Row, Col } from "@nextui-org/react";
+import { Card, Textarea, Input, Row, Col } from "@nextui-org/react";
 import SpinButton from "../buttons/SpinButton";
 import TextButton from "../buttons/TextButton";
 import AppText from "../texts/AppText";
@@ -15,6 +15,7 @@ const TaskDialog = (props: ITaskDialog) => {
     const [taskName, setTaskName] = useState('');
     const [estPomodoros, setEstPomodoros] = useState(1);
     const [taskNote, setTaskNote] = useState('');
+    const [isAddNote, setIsAddNote] = useState(false);
     const [canSave, setCanSave] = useState(false);
 
     useEffect(() => {
@@ -25,7 +26,6 @@ const TaskDialog = (props: ITaskDialog) => {
     }, [taskName]);
 
     const increasePomodorosHandler = () => {
-        console.log(estPomodoros)
         if (estPomodoros < 10)
             setEstPomodoros(estPomodoros => estPomodoros + 1);
     }
@@ -35,8 +35,27 @@ const TaskDialog = (props: ITaskDialog) => {
             setEstPomodoros(estPomodoros => estPomodoros - 1);
     }
 
+    const saveHandler = () => {
+        const todoTask = {
+            taskName,
+            estPomodoros,
+            taskNote,
+            isCompleted: false
+        }
+        props.addTodoTask(todoTask);
+        resetDialog();
+    }
+
+    const resetDialog = () => {
+        setTaskName('');
+        setTaskNote('');
+        setEstPomodoros(1);
+        setIsAddNote(false);
+        setCanSave(false);
+    }
+
     return (
-        <Card>
+        <Card id='task-dialog'>
             <Card.Body>
                 <Row css={{ paddingBottom: '8px' }}>
                     <Input underlined fullWidth aria-label='task_name'
@@ -60,12 +79,28 @@ const TaskDialog = (props: ITaskDialog) => {
                         </SpinButton>
                     </Row>
                 </Col>
-                <Row css={{ paddingTop: '8px' }}>
-                    <TextButton ripple={false} size='primary' color="primary" bold
-                        css={{ color: 'rgba(0, 0, 0, 0.4)', textDecoration: 'underline' }}>
-                        + Add Note
-                    </TextButton>
-                </Row>
+                <Col css={{ paddingTop: '8px' }}>
+                    <Row>
+                        {
+                            isAddNote ?
+                                <Textarea fullWidth aria-label='task_note' status="primary" placeholder="Some notes..."
+                                    minRows={3} maxRows={10} value={taskNote} onChange={(e) => setTaskNote(e.target.value)} /> :
+                                <TextButton ripple={false} size='primary' color="primary" bold onPress={() => setIsAddNote(true)}
+                                    css={{ color: 'rgba(0, 0, 0, 0.4)', textDecoration: 'underline' }}>
+                                    + Add Note
+                                </TextButton>
+                        }
+                    </Row>
+                    <Row justify='flex-end'>
+                        {
+                            isAddNote &&
+                            <TextButton ripple={false} size='primary' color="primary" bold onPress={() => setIsAddNote(false)}
+                                css={{ color: 'rgba(0, 0, 0, 0.4)', textDecoration: 'underline', fontSize: '12px' }}>
+                                Cancel
+                            </TextButton>
+                        }
+                    </Row>
+                </Col>
             </Card.Body>
             <Card.Footer css={{ backgroundColor: '#efefef' }}>
                 <Row >
@@ -75,12 +110,12 @@ const TaskDialog = (props: ITaskDialog) => {
                         </TextButton>
                     </Row>
                     <Row justify="flex-end">
-                        <TextButton bold ripple={false} onClick={props.closeTaskDialog}
+                        <TextButton bold ripple={false} onPress={props.closeTaskDialog}
                             size='primary' color="primary" css={{ color: '#888888' }}>
                             Cancel
                         </TextButton>
-                        <TextButton bold disabled={!canSave} onClick={() => console.log(taskName)}
-                            ripple={false} size='primary' css={{ color: '#888888' }}>
+                        <TextButton bold disabled={!canSave} ripple={false} size='primary' onPress={saveHandler}
+                            css={{ color: canSave ? '#ffffff' : '#888888', backgroundColor: canSave ? '#544b49' : '$gray400' }} >
                             Save
                         </TextButton>
                     </Row>

@@ -7,17 +7,20 @@ import { createTheme } from "@nextui-org/react"
     LightOrange: #d95550
 */
 
+const AppColor = '#d95550'
+
 const LightTheme = createTheme({
     type: "light",
     theme: {
         colors: {
 
             // Default colors
-            background: '#d95550',
+            background: AppColor,
             text: '#ffffff',
 
             // Primary colors
             primary: '#ffffff',
+            primaryLight: '#efefef',
             primaryLightContrast: '#000000',
 
             // Secondary colors

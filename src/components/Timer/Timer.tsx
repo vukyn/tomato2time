@@ -41,7 +41,7 @@ const Timer = () => {
                 <AppText opacity='true'>#{timerNo}</AppText>
             </Row>
             <Row justify='center'>
-                <AppText opacity='false' size='md'>{tab === ('podomoro') ? 'Time to focus!' : 'Time for a break!' }</AppText>
+                <AppText size='md'>{tab === ('podomoro') ? 'Time to focus!' : 'Time for a break!' }</AppText>
             </Row>
         </Container>
     );

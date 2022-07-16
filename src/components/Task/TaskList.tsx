@@ -1,16 +1,18 @@
 import AddTaskButton from "../buttons/AddTaskButton";
 import { Container, Row } from "@nextui-org/react";
+import { useState } from "react";
 import Divider from "../dividers/Divider";
 import AppText from "../texts/AppText";
+import TaskListCard from "./TaskListCard";
 import TaskDialog from "./TaskDialog";
 import TaskMenu from "./TaskMenu";
-import { useState } from "react";
 
 interface ITodoTask {
+    id: string;
     taskName: string;
     estPomodoros: number;
     taskNote: string;
-    isFinished: boolean;
+    isCompleted: boolean;
 }
 
 const TaskList = () => {
@@ -19,7 +21,15 @@ const TaskList = () => {
     const [todoTasks, setTodoTasks] = useState<ITodoTask[]>([]);
 
     const addTodoTaskHandler = (todoTask: ITodoTask) => {
+        todoTask.id = Math.random().toString(16).slice(2);
         setTodoTasks([...todoTasks, todoTask]);
+        setIsAddTask(false);
+    }
+
+    const completeTaskHandler = (i: number) => {
+        let _todoTasks = [...todoTasks];
+        _todoTasks[i].isCompleted = !_todoTasks[i].isCompleted;
+        setTodoTasks(_todoTasks);
     }
 
     return (
@@ -31,6 +41,13 @@ const TaskList = () => {
                 </Container>
             </Row>
             <Divider color='white' opacity={0.5} size={2} />
+            {
+                todoTasks.map((task, i) => {
+                    return <TaskListCard key={i} taskName={task.taskName} isCompleted={task.isCompleted}
+                        estPomodoros={task.estPomodoros} completeTask={() => completeTaskHandler(i)} />
+                })
+            }
+
             {
                 isAddTask ?
                     <TaskDialog todoTasks={todoTasks} addTodoTask={addTodoTaskHandler} closeTaskDialog={() => setIsAddTask(false)} /> :

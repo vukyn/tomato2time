@@ -49,6 +49,18 @@ $orange600: #FB8C00;
     }
 }
 
+.check-icon {
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+// .edit-task-icon {
+//     color: #787F85;
+//     font-weight: bold
+// }
+
+
 /* Inputs */
 input::placeholder {
     font-style: italic,
@@ -60,6 +72,7 @@ input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
 input[type="number"] {
     -moz-appearance: textfield;
 }
