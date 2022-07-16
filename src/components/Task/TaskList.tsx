@@ -5,15 +5,10 @@ import Divider from "../dividers/Divider";
 import AppText from "../texts/AppText";
 import TaskListCard from "./TaskListCard";
 import TaskDialog from "./TaskDialog";
+import TaskSummary from "./TaskSummary";
 import TaskMenu from "./TaskMenu";
+import ITodoTask from "./interfaces/ITodoTask";
 
-interface ITodoTask {
-    id: string;
-    taskName: string;
-    estPomodoros: number;
-    taskNote: string;
-    isCompleted: boolean;
-}
 
 const TaskList = () => {
 
@@ -41,7 +36,9 @@ const TaskList = () => {
                 </Container>
             </Row>
             <Divider color='white' opacity={0.5} size={2} />
+
             {
+                // Loop TodoTask List
                 todoTasks.map((task, i) => {
                     return <TaskListCard key={i} taskName={task.taskName} isCompleted={task.isCompleted}
                         estPomodoros={task.estPomodoros} completeTask={() => completeTaskHandler(i)} />
@@ -49,11 +46,17 @@ const TaskList = () => {
             }
 
             {
+                // Button to open add TaskDialog
                 isAddTask ?
                     <TaskDialog todoTasks={todoTasks} addTodoTask={addTodoTaskHandler} closeTaskDialog={() => setIsAddTask(false)} /> :
                     <AddTaskButton border='primary' size='primary' color='primary' animated={false} onClick={() => setIsAddTask(true)}>
                         <i className='material-icons md-18' style={{ marginRight: '5px' }}>add_circle_outline</i> Add Task
                     </AddTaskButton>
+            }
+
+            {
+                // Show TaskSummary if todoTasks.length > 0
+                todoTasks.length > 0 && <TaskSummary todoTasks={todoTasks}/>
             }
         </Container >
     );

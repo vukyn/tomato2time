@@ -3,12 +3,8 @@ import SpinButton from "../buttons/SpinButton";
 import TextButton from "../buttons/TextButton";
 import AppText from "../texts/AppText";
 import { useEffect, useState } from "react";
+import ITaskDialog from "./interfaces/ITaskDialog";
 
-interface ITaskDialog {
-    todoTasks: Array<any>,
-    addTodoTask: any,
-    closeTaskDialog: any,
-}
 
 const TaskDialog = (props: ITaskDialog) => {
 
