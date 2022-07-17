@@ -45,6 +45,11 @@ const TaskDialog = (props: ITaskDialog) => {
         resetDialog();
     }
 
+    const deleteHandler = () => {
+        props.deleteTodoTask();
+        props.closeTaskDialog();
+    }
+
     const resetDialog = () => {
         setTaskName('');
         setTaskNote('');
@@ -105,7 +110,8 @@ const TaskDialog = (props: ITaskDialog) => {
                 <Row >
                     {
                         props.isEdit && <Row justify="flex-start">
-                            <TextButton bold ripple={false} size='primary' color="primary" css={{ color: '#888888' }}>
+                            <TextButton bold ripple={false} size='primary' color="primary"
+                                onPress={deleteHandler} css={{ color: '#888888' }}>
                                 Delete
                             </TextButton>
                         </Row>

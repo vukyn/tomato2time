@@ -26,6 +26,21 @@ const TaskList = () => {
         }
     }
 
+    const deleteTodoTaskHandler = (todoTask: ITodoTask) => {
+        let _todoTasks = todoTasks.filter(t => t.id !== todoTask.id);
+        setTodoTasks(_todoTasks);
+    }
+
+    const deleteAllTodoTasksHandler = () => {
+        setTodoTasks([]);
+    }
+
+    const deleteCompletedTodoTasksHandler = () => {
+        let _todoTasks = todoTasks.filter(t => t.isCompleted === false);
+        setTodoTasks(_todoTasks);
+    }
+
+
     const completeTaskHandler = (i: number) => {
         let _todoTasks = [...todoTasks];
         _todoTasks[i].isCompleted = !_todoTasks[i].isCompleted;
@@ -37,7 +52,7 @@ const TaskList = () => {
             <Row id='task-header'>
                 <AppText bold='true' size='md'>Tasks</AppText>
                 <Container display='flex' justify='flex-end' css={{ paddingRight: '0px' }}>
-                    <TaskMenu />
+                    <TaskMenu deleteAll={deleteAllTodoTasksHandler} deleteCompleted={deleteCompletedTodoTasksHandler}/>
                 </Container>
             </Row>
             <Divider color='white' opacity={0.5} size={2} />
@@ -45,7 +60,7 @@ const TaskList = () => {
             {
                 // Loop TodoTask List
                 todoTasks.map((task, i) => {
-                    return <TaskListCard key={i} todoTask={task}
+                    return <TaskListCard key={i} todoTask={task} deleteTodoTask={() => deleteTodoTaskHandler(task)}
                         addEditTodoTask={addEditTodoTaskHandler} completeTask={() => completeTaskHandler(i)} />
                 })
             }

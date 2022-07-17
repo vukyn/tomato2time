@@ -8,12 +8,13 @@ import { useState } from "react";
 
 
 const TaskListCard = (props: ITaskListCard) => {
-    
+
     const [isEditTask, setIsEditTask] = useState(false);
-    
+
     return (
         isEditTask ?
-            <TaskDialog isEdit={true} todoTask={props.todoTask} addEditTodoTask={props.addEditTodoTask} closeTaskDialog={() => setIsEditTask(false)} />
+            <TaskDialog isEdit={true} todoTask={props.todoTask} addEditTodoTask={props.addEditTodoTask}
+                deleteTodoTask={props.deleteTodoTask} closeTaskDialog={() => setIsEditTask(false)} />
             :
             <Card variant='flat' css={{ margin: '8px 0px', height: '80%' }}>
                 <Card.Body>

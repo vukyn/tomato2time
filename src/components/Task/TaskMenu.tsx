@@ -3,9 +3,10 @@ import { Popover } from "@nextui-org/react";
 import TaskMenuText from "../texts/TaskMenuText";
 import TaskMenuButton from "../buttons/TaskMenuButton";
 import TransparentButton from "../buttons/TransparentButton";
+import ITaskMenu from "./interfaces/ITaskMenu";
 
 
-const TaskMenu = () => {
+const TaskMenu = (props: ITaskMenu) => {
     return (
         <Popover placement="bottom-right" disableAnimation>
             <Popover.Trigger>
@@ -14,10 +15,10 @@ const TaskMenu = () => {
                 </TransparentButton>
             </Popover.Trigger>
             <Popover.Content>
-                <TaskMenuButton size='primary' color="primary">
+                <TaskMenuButton size='primary' color="primary" onPress={props.deleteCompleted}>
                     <i className='material-icons task-menu md-16' style={{ marginRight: 5, color: 'black' }}>delete</i>
                     <TaskMenuText color="black">
-                        Clear finished tasks
+                        Clear completed tasks
                     </TaskMenuText>
                 </TaskMenuButton>
                 <TaskMenuButton size='primary' color="primary">
@@ -26,14 +27,14 @@ const TaskMenu = () => {
                         Clear act pomodoros
                     </TaskMenuText>
                 </TaskMenuButton>
-                <TaskMenuButton size='primary' color="primary">
+                {/* <TaskMenuButton size='primary' color="primary">
                     <i className='material-icons task-menu md-16' style={{ marginRight: 5, color: 'black' }}>add</i>
                     <TaskMenuText color="black">
                         Add from templates
                     </TaskMenuText>
-                </TaskMenuButton>
+                </TaskMenuButton> */}
                 <Divider color='black' opacity={0.1} size={1} />
-                <TaskMenuButton size='primary' color="primary">
+                <TaskMenuButton size='primary' color="primary" onPress={props.deleteAll}>
                     <i className='material-icons task-menu md-16' style={{ marginRight: 5, color: 'black' }}>delete</i>
                     <TaskMenuText color="black">
                         Clear all tasks
