@@ -15,10 +15,15 @@ const TaskList = () => {
     const [isAddTask, setIsAddTask] = useState(false);
     const [todoTasks, setTodoTasks] = useState<ITodoTask[]>([]);
 
-    const addTodoTaskHandler = (todoTask: ITodoTask) => {
-        todoTask.id = Math.random().toString(16).slice(2);
-        setTodoTasks([...todoTasks, todoTask]);
-        setIsAddTask(false);
+    const addEditTodoTaskHandler = (todoTask: ITodoTask, isEdit: boolean) => {
+        if (isEdit) {
+            let _todoTasks = [...todoTasks];
+            _todoTasks[_todoTasks.findIndex(t => t.id === todoTask.id)] = todoTask;
+            setTodoTasks(_todoTasks);
+        } else {
+            todoTask.id = Math.random().toString(16).slice(2);
+            setTodoTasks([...todoTasks, todoTask]);
+        }
     }
 
     const completeTaskHandler = (i: number) => {
@@ -40,15 +45,15 @@ const TaskList = () => {
             {
                 // Loop TodoTask List
                 todoTasks.map((task, i) => {
-                    return <TaskListCard key={i} taskName={task.taskName} isCompleted={task.isCompleted}
-                        estPomodoros={task.estPomodoros} completeTask={() => completeTaskHandler(i)} />
+                    return <TaskListCard key={i} todoTask={task}
+                        addEditTodoTask={addEditTodoTaskHandler} completeTask={() => completeTaskHandler(i)} />
                 })
             }
 
             {
                 // Button to open add TaskDialog
                 isAddTask ?
-                    <TaskDialog todoTasks={todoTasks} addTodoTask={addTodoTaskHandler} closeTaskDialog={() => setIsAddTask(false)} /> :
+                    <TaskDialog isEdit={false} addEditTodoTask={addEditTodoTaskHandler} closeTaskDialog={() => setIsAddTask(false)} /> :
                     <AddTaskButton border='primary' size='primary' color='primary' animated={false} onClick={() => setIsAddTask(true)}>
                         <i className='material-icons md-18' style={{ marginRight: '5px' }}>add_circle_outline</i> Add Task
                     </AddTaskButton>
@@ -56,7 +61,7 @@ const TaskList = () => {
 
             {
                 // Show TaskSummary if todoTasks.length > 0
-                todoTasks.length > 0 && <TaskSummary todoTasks={todoTasks}/>
+                todoTasks.length > 0 && <TaskSummary todoTasks={todoTasks} />
             }
         </Container >
     );

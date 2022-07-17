@@ -8,10 +8,10 @@ import ITaskDialog from "./interfaces/ITaskDialog";
 
 const TaskDialog = (props: ITaskDialog) => {
 
-    const [taskName, setTaskName] = useState('');
-    const [estPomodoros, setEstPomodoros] = useState(1);
-    const [taskNote, setTaskNote] = useState('');
-    const [isAddNote, setIsAddNote] = useState(false);
+    const [taskName, setTaskName] = useState(props.isEdit ? props.todoTask?.taskName : '');
+    const [estPomodoros, setEstPomodoros] = useState(props.isEdit ? props.todoTask?.estPomodoros : 1);
+    const [taskNote, setTaskNote] = useState(props.isEdit ? props.todoTask?.taskNote : '');
+    const [isAddNote, setIsAddNote] = useState(props.isEdit ? props.todoTask?.isAddNote : false);
     const [canSave, setCanSave] = useState(false);
 
     useEffect(() => {
@@ -33,12 +33,15 @@ const TaskDialog = (props: ITaskDialog) => {
 
     const saveHandler = () => {
         const todoTask = {
+            id: props.isEdit ? props.todoTask.id : '',
             taskName,
             estPomodoros,
             taskNote,
+            isAddNote,
             isCompleted: false
         }
-        props.addTodoTask(todoTask);
+        props.addEditTodoTask(todoTask, props.isEdit);
+        props.closeTaskDialog();
         resetDialog();
     }
 
@@ -100,11 +103,13 @@ const TaskDialog = (props: ITaskDialog) => {
             </Card.Body>
             <Card.Footer css={{ backgroundColor: '#efefef' }}>
                 <Row >
-                    <Row justify="flex-start">
-                        <TextButton bold ripple={false} size='primary' color="primary" css={{ color: '#888888' }}>
-                            Delete
-                        </TextButton>
-                    </Row>
+                    {
+                        props.isEdit && <Row justify="flex-start">
+                            <TextButton bold ripple={false} size='primary' color="primary" css={{ color: '#888888' }}>
+                                Delete
+                            </TextButton>
+                        </Row>
+                    }
                     <Row justify="flex-end">
                         <TextButton bold ripple={false} onPress={props.closeTaskDialog}
                             size='primary' color="primary" css={{ color: '#888888' }}>

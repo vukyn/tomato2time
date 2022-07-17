@@ -1,5 +1,8 @@
+import ITodoTask from "./ITodoTask";
+
 export default interface ITaskDialog {
-    todoTasks: Array<any>,
-    addTodoTask: any,
+    addEditTodoTask: any,
     closeTaskDialog: any,
+    isEdit: boolean,
+    todoTask?: ITodoTask
 }
