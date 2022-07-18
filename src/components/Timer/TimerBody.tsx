@@ -87,12 +87,12 @@ const TimerBody = (props: ITimerBody) => {
     switch (props.tab) {
         case 'podomoro':
             return <PomodoroTimer playSound={playSoundHandler} addPodomoro={addPodomoroHandler}
-                addTimerNo={props.addTimerNo} switchTab={switchTabHandler} timerTitle={props.timerTitle} />
+                addActPomodoro={props.addActPomodoro} switchTab={switchTabHandler} timerTitle={props.timerTitle} />
         case 'short break':
-            return <ShortTimer playSound={playSoundHandler} addTimerNo={props.addTimerNo}
+            return <ShortTimer playSound={playSoundHandler}
                 switchTab={switchTabHandler} timerTitle={props.timerTitle} />
         case 'long break':
-            return <LongTimer playSound={playSoundHandler} addTimerNo={props.addTimerNo}
+            return <LongTimer playSound={playSoundHandler}
                 switchTab={switchTabHandler} timerTitle={props.timerTitle} />
         default:
             return <div></div>
@@ -107,7 +107,7 @@ const PomodoroTimer = (props: IPomodoroTimer) => {
         timerType: 'DECREMENTAL',
         onTimeOver: () => {
             props.playSound('alarm');
-            props.addTimerNo();
+            props.addActPomodoro();
             props.addPodomoro();
             props.switchTab();
         }
@@ -161,7 +161,6 @@ const ShortTimer = (props: IPomodoroTimer) => {
         timerType: 'DECREMENTAL',
         onTimeOver: () => {
             props.playSound('alarm');
-            props.addTimerNo();
             props.switchTab();
         }
     });
@@ -214,7 +213,6 @@ const LongTimer = (props: IPomodoroTimer) => {
         timerType: 'DECREMENTAL',
         onTimeOver: () => {
             props.playSound('alarm');
-            props.addTimerNo();
             props.switchTab();
         }
     });

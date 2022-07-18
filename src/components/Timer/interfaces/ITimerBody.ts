@@ -1,6 +1,6 @@
 export default interface ITimerBody {
     tab: string;
     timerTitle: string;
-    changeTab: any;
-    addTimerNo: any;
+    changeTab: (tab: string) => void;
+    addActPomodoro: () => void;
 }

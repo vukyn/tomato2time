@@ -9,7 +9,6 @@ const Timer = (props: ITimer) => {
 
     // Create states
     const [tab, setTab] = useState('podomoro');
-    const [timerNo, setTimerNo] = useState(1);
 
     // ComponentDidMount
     useEffect(() => {
@@ -19,10 +18,6 @@ const Timer = (props: ITimer) => {
     // Event handlers
     const changeTabHandler = (tab: string) => {
         setTab(tab);
-    }
-
-    const addTimerNoHandler = () => {
-        setTimerNo(t => t + 1);
     }
 
     const timerTitle = props.selectedTask !== undefined ? props.selectedTask.taskName :
@@ -37,12 +32,12 @@ const Timer = (props: ITimer) => {
                 </Card.Header>
                 <Card.Divider />
                 <Card.Body css={{ textAlign: 'center' }}>
-                    <TimerBody tab={tab} changeTab={changeTabHandler} timerTitle={timerTitle} addTimerNo={addTimerNoHandler} />
+                    <TimerBody tab={tab} changeTab={changeTabHandler} timerTitle={timerTitle} addActPomodoro={props.addActPomodoro} />
                 </Card.Body>
             </Card>
             <Spacer y={1} />
             <Row id='timer-no' justify='center'>
-                <AppText id='timer-no' opacity='true'>#{timerNo}</AppText>
+                <AppText id='timer-no' opacity='true'>#{props.actPomodoro + 1}</AppText>
             </Row>
             <Row justify='center'>
                 <AppText id='timer-title' size='md'> {timerTitle} </AppText>

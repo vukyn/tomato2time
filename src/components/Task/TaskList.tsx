@@ -79,7 +79,7 @@ const TaskList = (props: ITaskList) => {
 
             {
                 // Show TaskSummary if todoTasks.length > 0
-                todoTasks.length > 0 && <TaskSummary todoTasks={todoTasks} />
+                todoTasks.length > 0 && <TaskSummary todoTasks={todoTasks} actPomodoro={props.actPomodoro} />
             }
         </Container >
     );

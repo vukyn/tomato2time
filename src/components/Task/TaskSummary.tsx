@@ -23,7 +23,7 @@ const TaskSummary = (props: ITaskSummary) => {
                 Act :
             </AppText>
             <AppText bold size='lg' css={valueStyled}>
-                0
+                {props.actPomodoro}
             </AppText>
             <AppText size='md' css={titleStyled}>
                 Finish at
