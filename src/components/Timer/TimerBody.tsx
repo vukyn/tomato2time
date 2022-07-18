@@ -31,7 +31,7 @@ const displayTimer = (time: number, title: string) => {
     if (_minutes < 10) minutes = '0' + minutes;
     if (_seconds < 10) seconds = '0' + seconds;
 
-    document.title = minutes + ':' + seconds + ' -' + title;
+    document.title = minutes + ':' + seconds + ' - ' + title;
 
     return minutes + ':' + seconds;
 }

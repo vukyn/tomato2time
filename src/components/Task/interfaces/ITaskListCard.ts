@@ -3,8 +3,8 @@ import ITodoTask from "./ITodoTask";
 export default interface ITaskListCard {
     todoTask: ITodoTask;
     isSelected: boolean;
-    completeTask: any;
-    addEditTodoTask: any;
-    selectTodoTask: any;
-    deleteTodoTask: any;
+    completeTask: () => void;
+    addEditTodoTask: (todoTask: ITodoTask, isEdit: boolean) => void;
+    selectTodoTask: () => void;
+    deleteTodoTask: () => void;
 }

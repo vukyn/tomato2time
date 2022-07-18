@@ -8,10 +8,11 @@ import { useState } from "react";
 
 
 const TaskListCard = (props: ITaskListCard) => {
-
+    
     const [isEditTask, setIsEditTask] = useState(false);
+
     const CardStyle = {
-        margin: '8px 0px',
+        marginTop: 8,
         height: '80%',
         borderRadius: 4,
         borderLeft: props.isSelected ? '5px solid #000000' : '',

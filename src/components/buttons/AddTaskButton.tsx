@@ -4,6 +4,7 @@ import { Button, styled } from '@nextui-org/react';
 const AddTaskButton = styled(Button, {
     cursor: 'pointer',
     alignItems: 'center',
+    marginTop: 8,
     variants: {
         border: {
             primary: {

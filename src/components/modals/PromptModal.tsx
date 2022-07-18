@@ -8,12 +8,20 @@ interface IPromptModal {
     confirmText: string;
     visible: boolean;
     close: any;
-    skip: any;
+    confirm: any;
 }
 
 const PromptModal = (props: IPromptModal) => {
+
+    // Event handlers
+    const confirmHandler = () => {
+        props.confirm();
+        // Fix overflow: hidden
+        document.body.style.cssText = '';
+    }
+    
     return (
-        <Modal open={props.visible} onClose={props.close}>
+        <Modal preventClose open={props.visible} onClose={props.close}>
             <Modal.Header>
                 <Text h5 color="neutral">{props.headerText}</Text>
             </Modal.Header>
@@ -24,7 +32,7 @@ const PromptModal = (props: IPromptModal) => {
                 <TextButton size='primary' color="primary" onClick={props.close}>
                     {props.cancelText}
                 </TextButton>
-                <TextButton size='primary' color="primary" onClick={props.skip}>
+                <TextButton size='primary' color="primary" onClick={confirmHandler}>
                     {props.confirmText}
                 </TextButton>
             </Modal.Footer>
