@@ -8,11 +8,11 @@ import ITimer from "./interfaces/ITimer";
 const Timer = (props: ITimer) => {
 
     // Create states
-    const [tab, setTab] = useState('podomoro');
+    const [tab, setTab] = useState('pomodoro');
 
     // ComponentDidMount
     useEffect(() => {
-        document.title = 'Podomoro Timer!';
+        document.title = 'Pomodoro Timer!';
     });
 
     // Event handlers
@@ -21,7 +21,7 @@ const Timer = (props: ITimer) => {
     }
 
     const timerTitle = props.selectedTask !== undefined ? props.selectedTask.taskName :
-        tab === 'podomoro' ? 'Time to focus!' : 'Time for a break!'
+        tab === 'pomodoro' ? 'Time to focus!' : 'Time for a break!'
 
     return (
         <Container id='timer-box' css={{ maxWidth: '480px', margin: 'auto' }}>

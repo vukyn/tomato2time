@@ -10,10 +10,10 @@ const TimerHeader = (props: ITimerHeader) => {
     return (
         <Row id='timer-header' align="center" justify="center" gap={1}>
             <Col>
-                {props.tab === ('podomoro') ?
+                {props.tab === ('pomodoro') ?
                     <TabButton auto color='primary' size='primary' border='primary' font='primary' ripple={false}> Pomodoro </TabButton> :
                     <TabButton auto color='secondary' size='primary' border='primary' font='primary' ripple={false}
-                        onPress={() => props.changeTab('podomoro')}> Pomodoro </TabButton>}
+                        onPress={() => props.changeTab('pomodoro')}> Pomodoro </TabButton>}
             </Col>
             <Col>
                 {props.tab === ('short break') ?

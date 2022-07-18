@@ -7,7 +7,7 @@ import IPomodoroTimer from './interfaces/IPomodoroTimer';
 import TimerControl from './TimerControl';
 
 // CONSTANTS
-const PODOMORO_TIME = 1500;
+const POMODORO_TIME = 1500;
 const SHORT_TIME = 300;
 const LONG_TIME = 900;
 const END_TIME = 0;
@@ -59,13 +59,13 @@ const TimerBody = (props: ITimerBody) => {
         }
     }
 
-    const addPodomoroHandler = () => {
+    const addPomodoroHandler = () => {
         pomodoro.current += 1;
     }
 
     const switchTabHandler = () => {
         switch (props.tab) {
-            case 'podomoro':
+            case 'pomodoro':
                 if (pomodoro.current % 4 === 0) {
                     props.changeTab('long break');
                     pomodoro.current = 0;
@@ -74,10 +74,10 @@ const TimerBody = (props: ITimerBody) => {
                     props.changeTab('short break');
                 break;
             case 'short break':
-                props.changeTab('podomoro');
+                props.changeTab('pomodoro');
                 break;
             case 'long break':
-                props.changeTab('podomoro');
+                props.changeTab('pomodoro');
                 break;
             default:
                 break;
@@ -85,8 +85,8 @@ const TimerBody = (props: ITimerBody) => {
     }
 
     switch (props.tab) {
-        case 'podomoro':
-            return <PomodoroTimer playSound={playSoundHandler} addPodomoro={addPodomoroHandler}
+        case 'pomodoro':
+            return <PomodoroTimer playSound={playSoundHandler} addPomodoro={addPomodoroHandler}
                 addActPomodoro={props.addActPomodoro} switchTab={switchTabHandler} timerTitle={props.timerTitle} />
         case 'short break':
             return <ShortTimer playSound={playSoundHandler}
@@ -102,13 +102,13 @@ const TimerBody = (props: ITimerBody) => {
 const PomodoroTimer = (props: IPomodoroTimer) => {
     // use-timer
     const { time, start, pause, reset, status, advanceTime } = useTimer({
-        initialTime: PODOMORO_TIME,
+        initialTime: POMODORO_TIME,
         endTime: END_TIME,
         timerType: 'DECREMENTAL',
         onTimeOver: () => {
             props.playSound('alarm');
             props.addActPomodoro();
-            props.addPodomoro();
+            props.addPomodoro();
             props.switchTab();
         }
     });
