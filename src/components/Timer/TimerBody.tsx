@@ -87,7 +87,8 @@ const TimerBody = (props: ITimerBody) => {
     switch (props.tab) {
         case 'pomodoro':
             return <PomodoroTimer playSound={playSoundHandler} addPomodoro={addPomodoroHandler} timerTitle={props.timerTitle}
-                addActPomodoro={props.addActPomodoro} switchTab={switchTabHandler} setPomodoroTime={props.setPomodoroTime} />
+                addActPomodoro={props.addActPomodoro} switchTab={switchTabHandler} setPomodoroTime={props.setPomodoroTime}
+                setCompletedAct={props.setCompletedAct} />
         case 'short break':
             return <ShortTimer playSound={playSoundHandler}
                 switchTab={switchTabHandler} timerTitle={props.timerTitle} />
@@ -108,6 +109,7 @@ const PomodoroTimer = (props: IPomodoroTimer) => {
         onTimeOver: () => {
             props.playSound('alarm');
             props.addActPomodoro();
+            props.setCompletedAct();
             props.addPomodoro();
             props.switchTab();
         }
@@ -116,6 +118,7 @@ const PomodoroTimer = (props: IPomodoroTimer) => {
     // useEffect
     useEffect(() => {
         props.setPomodoroTime(time);
+        // eslint-disable-next-line
     }, [time]);
 
     // Event handlers
@@ -153,7 +156,7 @@ const PomodoroTimer = (props: IPomodoroTimer) => {
         <div id='timer-body'>
             <TimerText id='timer-text'>{displayTimer(time, props.timerTitle)}</TimerText>
             <TimerControl start={startHandler} pause={pauseHandler} status={status} skip={skipHandler}
-                increaseTime={increaseTimeHandler} decreaseTime={decreaseTimeHandler} type='pomodoro'/>
+                increaseTime={increaseTimeHandler} decreaseTime={decreaseTimeHandler} type='pomodoro' />
         </div>
     );
 }

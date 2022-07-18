@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import TimerHeader from './TimerHeader';
 import TimerBody from './TimerBody';
 import AppText from "../texts/AppText";
@@ -9,11 +9,7 @@ const Timer = (props: ITimer) => {
 
     // Create states
     const [tab, setTab] = useState('pomodoro');
-
-    // ComponentDidMount
-    useEffect(() => {
-        document.title = 'Pomodoro Timer!';
-    });
+    const [actPomodoro, setActPomodoro] = useState(0);
 
     // Event handlers
     const changeTabHandler = (tab: string) => {
@@ -32,13 +28,13 @@ const Timer = (props: ITimer) => {
                 </Card.Header>
                 <Card.Divider />
                 <Card.Body css={{ textAlign: 'center' }}>
-                    <TimerBody tab={tab} changeTab={changeTabHandler} timerTitle={timerTitle}
-                        addActPomodoro={props.addActPomodoro} setPomodoroTime={props.setPomodoroTime} />
+                    <TimerBody tab={tab} changeTab={changeTabHandler} timerTitle={timerTitle} addActPomodoro={() => setActPomodoro(a => a + 1)}
+                        setCompletedAct={props.setCompletedAct} setPomodoroTime={props.setPomodoroTime} />
                 </Card.Body>
             </Card>
             <Spacer y={1} />
             <Row id='timer-no' justify='center'>
-                <AppText id='timer-no' opacity='true'>#{props.actPomodoro + 1}</AppText>
+                <AppText id='timer-no' opacity='true'>#{actPomodoro + 1}</AppText>
             </Row>
             <Row justify='center'>
                 <AppText id='timer-title' size='md'> {timerTitle} </AppText>

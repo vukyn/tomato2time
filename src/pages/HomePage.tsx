@@ -6,16 +6,17 @@ import ITodoTask from '../components/Task/interfaces/ITodoTask';
 
 const HomePage = () => {
 
-    const [actPomodoro, setActPomodoro] = useState(0);
+    // States
     const [pomodoroTime, setPomodoroTime] = useState(0);
+    const [completedAct, setCompletedAct] = useState(false);
     const [selectedTask, setSelectedTask] = useState<ITodoTask>();
 
     return (
         <Container id='container' display='flex' direction='column' justify='center' alignItems='center'>
-            <Timer selectedTask={selectedTask} actPomodoro={actPomodoro}
-                addActPomodoro={() => setActPomodoro(a => a + 1)} setPomodoroTime={setPomodoroTime} />
+            <Timer selectedTask={selectedTask} setCompletedAct={() => setCompletedAct(true)} setPomodoroTime={setPomodoroTime} />
             <TaskList selectedTask={selectedTask} setSelectedTask={setSelectedTask}
-                actPomodoro={actPomodoro} pomodoroTime={pomodoroTime} />
+                setCompletedAct={() => setCompletedAct(false)}
+                pomodoroTime={pomodoroTime} completedAct={completedAct} />
         </Container>
     );
 }

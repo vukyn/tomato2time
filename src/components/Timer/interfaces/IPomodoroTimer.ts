@@ -4,5 +4,6 @@ export default interface IPomodoroTimer {
     switchTab: () => void;
     addPomodoro?: () => void;
     playSound: (sound: string) => void;
+    setCompletedAct?: () => void;
     setPomodoroTime?: (pomodoroTime: number) => void;
 }

@@ -38,8 +38,9 @@ const TaskSummary = (props: ITaskSummary) => {
     const titleStyled = { margin: '12px 7px', color: 'rgba(255, 255, 255, 0.7)' }
     const valueStyled = { margin: '0px 7px 0px 0px' }
 
+    const actPomodoros = props.todoTasks.map(p => p.actPomodoros).reduce((prev, next) => prev + next, 0);
     const estPomodoros = props.todoTasks.filter(t => t.isCompleted === false)
-        .map(p => p.estPomodoros).reduce((prev, next) => prev + next, 0);
+        .map(p => p.estPomodoros - p.actPomodoros).reduce((prev, next) => prev + next, 0);
     const finishedTime = getFinishedTime(props.pomodoroTime, estPomodoros);
 
     return (
@@ -58,7 +59,7 @@ const TaskSummary = (props: ITaskSummary) => {
                 Act :
             </AppText>
             <AppText bold size='lg' css={valueStyled}>
-                {props.actPomodoro}
+                {actPomodoros}
             </AppText>
             <AppText size='md' css={titleStyled}>
                 Finish at

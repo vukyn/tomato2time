@@ -15,6 +15,7 @@ const TaskDialog = (props: ITaskDialog) => {
     // States
     const [taskName, setTaskName] = useState(props.isEdit ? props.todoTask?.taskName : '');
     const [estPomodoros, setEstPomodoros] = useState(props.isEdit ? props.todoTask?.estPomodoros : 1);
+    const [actPomodoros, setActPomodoros] = useState(props.isEdit ? props.todoTask?.actPomodoros : 0);
     const [taskNote, setTaskNote] = useState(props.isEdit ? props.todoTask?.taskNote : '');
     const [isAddNote, setIsAddNote] = useState(props.isEdit ? props.todoTask?.isAddNote : false);
     const [canSave, setCanSave] = useState(false);
@@ -58,6 +59,7 @@ const TaskDialog = (props: ITaskDialog) => {
         const todoTask = {
             id: props.isEdit ? props.todoTask.id : '',
             taskName,
+            actPomodoros,
             estPomodoros,
             taskNote,
             isAddNote,

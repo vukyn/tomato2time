@@ -1,6 +1,6 @@
 import AddTaskButton from "../buttons/AddTaskButton";
 import { Container, Row } from "@nextui-org/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Divider from "../dividers/Divider";
 import AppText from "../texts/AppText";
 import TaskListCard from "./TaskListCard";
@@ -13,9 +13,27 @@ import ITaskList from "./interfaces/ITaskList";
 
 const TaskList = (props: ITaskList) => {
 
+    // States
     const [isAddTask, setIsAddTask] = useState(false);
     const [todoTasks, setTodoTasks] = useState<ITodoTask[]>([]);
 
+
+    // useEffect
+    useEffect(() => {
+        if (props.completedAct) {
+            if (props.selectedTask !== undefined)
+                if (props.selectedTask.actPomodoros < props.selectedTask.estPomodoros) {
+                    props.selectedTask.actPomodoros += 1;
+                    if (props.selectedTask.actPomodoros === props.selectedTask.estPomodoros)
+                        props.selectedTask.isCompleted = true;
+                }
+            props.setCompletedAct();
+        }
+        //eslint-disable-next-line
+    }, [props.completedAct]);
+
+
+    // Event handlers
     const addEditTodoTaskHandler = (todoTask: ITodoTask, isEdit: boolean) => {
         if (isEdit) {
             let _todoTasks = [...todoTasks];
@@ -79,7 +97,7 @@ const TaskList = (props: ITaskList) => {
 
             {
                 // Show TaskSummary if todoTasks.length > 0
-                todoTasks.length > 0 && <TaskSummary todoTasks={todoTasks} actPomodoro={props.actPomodoro} pomodoroTime={props.pomodoroTime}/>
+                todoTasks.length > 0 && <TaskSummary todoTasks={todoTasks} pomodoroTime={props.pomodoroTime} />
             }
         </Container >
     );

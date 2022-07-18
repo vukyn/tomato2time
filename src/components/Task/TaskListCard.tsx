@@ -8,7 +8,7 @@ import { useState } from "react";
 
 
 const TaskListCard = (props: ITaskListCard) => {
-    
+
     const [isEditTask, setIsEditTask] = useState(false);
 
     const CardStyle = {
@@ -49,7 +49,7 @@ const TaskListCard = (props: ITaskListCard) => {
                         <Col>
                             <Row justify='flex-end'>
                                 <AppText bold opacity size='md' css={{ color: '#000000', padding: '0px 15px' }}>
-                                    0/{props.todoTask.estPomodoros}
+                                    {props.todoTask.actPomodoros}/{props.todoTask.estPomodoros}
                                 </AppText>
                                 <EditTaskButton bordered border='primary' size='primary' color='primary' borderWeight='light' ripple={false}
                                     onPress={() => setIsEditTask(true)}>

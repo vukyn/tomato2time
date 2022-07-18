@@ -1,8 +1,9 @@
 import ITodoTask from "./ITodoTask";
 
 export default interface ITaskList {
-    actPomodoro: number;
+    completedAct: boolean;
     pomodoroTime: number;
     selectedTask: ITodoTask;
+    setCompletedAct: () => void;
     setSelectedTask: (task: ITodoTask) => void;
 }
