@@ -8,9 +8,10 @@ import TaskDialog from "./TaskDialog";
 import TaskSummary from "./TaskSummary";
 import TaskMenu from "./TaskMenu";
 import ITodoTask from "./interfaces/ITodoTask";
+import ITaskList from "./interfaces/ITaskList";
 
 
-const TaskList = () => {
+const TaskList = (props: ITaskList) => {
 
     const [isAddTask, setIsAddTask] = useState(false);
     const [todoTasks, setTodoTasks] = useState<ITodoTask[]>([]);
@@ -52,7 +53,7 @@ const TaskList = () => {
             <Row id='task-header'>
                 <AppText bold='true' size='md'>Tasks</AppText>
                 <Container display='flex' justify='flex-end' css={{ paddingRight: '0px' }}>
-                    <TaskMenu deleteAll={deleteAllTodoTasksHandler} deleteCompleted={deleteCompletedTodoTasksHandler}/>
+                    <TaskMenu deleteAll={deleteAllTodoTasksHandler} deleteCompleted={deleteCompletedTodoTasksHandler} />
                 </Container>
             </Row>
             <Divider color='white' opacity={0.5} size={2} />
@@ -60,8 +61,10 @@ const TaskList = () => {
             {
                 // Loop TodoTask List
                 todoTasks.map((task, i) => {
-                    return <TaskListCard key={i} todoTask={task} deleteTodoTask={() => deleteTodoTaskHandler(task)}
-                        addEditTodoTask={addEditTodoTaskHandler} completeTask={() => completeTaskHandler(i)} />
+                    const isSelected = props.selectedTask?.id === task.id;
+                    return <TaskListCard key={i} todoTask={task} isSelected={isSelected}
+                        deleteTodoTask={() => deleteTodoTaskHandler(task)} addEditTodoTask={addEditTodoTaskHandler}
+                        selectTodoTask={() => props.setSelectedTask(task)} completeTask={() => completeTaskHandler(i)} />
                 })
             }
 

@@ -3,8 +3,9 @@ import TimerHeader from './TimerHeader';
 import TimerBody from './TimerBody';
 import AppText from "../texts/AppText";
 import { Container, Card, Spacer, Row } from '@nextui-org/react';
+import ITimer from "./interfaces/ITimer";
 
-const Timer = () => {
+const Timer = (props: ITimer) => {
 
     // Create states
     const [tab, setTab] = useState('podomoro');
@@ -27,7 +28,7 @@ const Timer = () => {
     return (
         <Container id='timer-box' css={{ maxWidth: '480px', margin: 'auto' }}>
             <Spacer y={2} />
-            <Card css={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', padding: '20px 0px 30px', marginBottom: '20px' }}>
+            <Card id='timer-container' css={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', padding: '20px 0px 30px', marginBottom: '20px' }}>
                 <Card.Header>
                     <TimerHeader tab={tab} changeTab={changeTabHandler} />
                 </Card.Header>
@@ -38,10 +39,16 @@ const Timer = () => {
             </Card>
             <Spacer y={1} />
             <Row id='timer-no' justify='center'>
-                <AppText opacity='true'>#{timerNo}</AppText>
+                <AppText id='timer-no' opacity='true'>#{timerNo}</AppText>
             </Row>
             <Row justify='center'>
-                <AppText size='md'>{tab === ('podomoro') ? 'Time to focus!' : 'Time for a break!' }</AppText>
+                <AppText id='timer-title' size='md'>
+                    {
+                        props.selectedTask !== undefined ?
+                            props.selectedTask.taskName :
+                            tab === ('podomoro') ? 'Time to focus!' : 'Time for a break!'
+                    }
+                </AppText>
             </Row>
         </Container>
     );

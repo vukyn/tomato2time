@@ -8,7 +8,7 @@ interface ITimerHeader {
 
 const TimerHeader = (props: ITimerHeader) => {
     return (
-        <Row id='CardHeader' align="center" justify="center" gap={1}>
+        <Row id='timer-header' align="center" justify="center" gap={1}>
             <Col>
                 {props.tab === ('podomoro') ?
                     <TabButton auto color='primary' size='primary' border='primary' font='primary' ripple={false}> Pomodoro </TabButton> :

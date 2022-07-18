@@ -10,13 +10,23 @@ import { useState } from "react";
 const TaskListCard = (props: ITaskListCard) => {
 
     const [isEditTask, setIsEditTask] = useState(false);
+    const CardStyle = {
+        margin: '8px 0px',
+        height: '80%',
+        borderRadius: 4,
+        borderLeft: props.isSelected ? '5px solid #000000' : '',
+        '&:hover': {
+            borderLeft: props.isSelected ? '' : '5px solid #cccccc'
+        }
+    }
 
     return (
         isEditTask ?
             <TaskDialog isEdit={true} todoTask={props.todoTask} addEditTodoTask={props.addEditTodoTask}
                 deleteTodoTask={props.deleteTodoTask} closeTaskDialog={() => setIsEditTask(false)} />
             :
-            <Card variant='flat' css={{ margin: '8px 0px', height: '80%' }}>
+            <Card isPressable isHoverable variant='flat' onPress={props.selectTodoTask}
+                css={CardStyle}>
                 <Card.Body>
                     <Row>
                         <Col>
