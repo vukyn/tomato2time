@@ -1,8 +1,9 @@
 export default interface ITimerControl {
+    type?: string;
     status: string;
-    decreaseTime: any;
-    increaseTime: any;
-    pause: any;
-    start: any;
-    skip: any;
+    decreaseTime: () => void;
+    increaseTime: () => void;
+    pause: () => void;
+    start: () => void;
+    skip: () => void;
 }

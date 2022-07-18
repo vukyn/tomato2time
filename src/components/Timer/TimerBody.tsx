@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import useSound from 'use-sound';
 import { useTimer } from 'use-timer';
 import { Text, styled } from "@nextui-org/react";
@@ -86,8 +86,8 @@ const TimerBody = (props: ITimerBody) => {
 
     switch (props.tab) {
         case 'pomodoro':
-            return <PomodoroTimer playSound={playSoundHandler} addPomodoro={addPomodoroHandler}
-                addActPomodoro={props.addActPomodoro} switchTab={switchTabHandler} timerTitle={props.timerTitle} />
+            return <PomodoroTimer playSound={playSoundHandler} addPomodoro={addPomodoroHandler} timerTitle={props.timerTitle}
+                addActPomodoro={props.addActPomodoro} switchTab={switchTabHandler} setPomodoroTime={props.setPomodoroTime} />
         case 'short break':
             return <ShortTimer playSound={playSoundHandler}
                 switchTab={switchTabHandler} timerTitle={props.timerTitle} />
@@ -112,6 +112,11 @@ const PomodoroTimer = (props: IPomodoroTimer) => {
             props.switchTab();
         }
     });
+
+    // useEffect
+    useEffect(() => {
+        props.setPomodoroTime(time);
+    }, [time]);
 
     // Event handlers
     const decreaseTimeHandler = () => {
@@ -148,7 +153,7 @@ const PomodoroTimer = (props: IPomodoroTimer) => {
         <div id='timer-body'>
             <TimerText id='timer-text'>{displayTimer(time, props.timerTitle)}</TimerText>
             <TimerControl start={startHandler} pause={pauseHandler} status={status} skip={skipHandler}
-                increaseTime={increaseTimeHandler} decreaseTime={decreaseTimeHandler} />
+                increaseTime={increaseTimeHandler} decreaseTime={decreaseTimeHandler} type='pomodoro'/>
         </div>
     );
 }

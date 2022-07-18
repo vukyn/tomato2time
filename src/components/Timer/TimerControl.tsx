@@ -11,8 +11,8 @@ const TimerControl = (props: ITimerControl) => {
         <Row id='control-buttons' justify='center' align='center' gap={0}>
             <Col>
                 <Row justify='center' align='center' css={{ paddingTop: '5px' }}>
-                    {props.status !== 'RUNNING' &&
-                        <RemoveIconButton size={36} decreaseTime={props.decreaseTime} />
+                    {props.status !== 'RUNNING' && props.type === 'pomodoro' ?
+                        <RemoveIconButton size={36} decreaseTime={props.decreaseTime} /> : ''
                     }
                 </Row>
             </Col>
@@ -30,7 +30,8 @@ const TimerControl = (props: ITimerControl) => {
                     {
                         props.status === 'RUNNING' ?
                             <SkipButton size={36} skip={props.skip} /> :
-                            <AddIconButton size={36} increaseTime={props.increaseTime} />
+                            props.type === 'pomodoro' ?
+                                <AddIconButton size={36} increaseTime={props.increaseTime} /> : ''
                     }
                 </Row>
             </Col>

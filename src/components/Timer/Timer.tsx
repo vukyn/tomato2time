@@ -32,7 +32,8 @@ const Timer = (props: ITimer) => {
                 </Card.Header>
                 <Card.Divider />
                 <Card.Body css={{ textAlign: 'center' }}>
-                    <TimerBody tab={tab} changeTab={changeTabHandler} timerTitle={timerTitle} addActPomodoro={props.addActPomodoro} />
+                    <TimerBody tab={tab} changeTab={changeTabHandler} timerTitle={timerTitle}
+                        addActPomodoro={props.addActPomodoro} setPomodoroTime={props.setPomodoroTime} />
                 </Card.Body>
             </Card>
             <Spacer y={1} />
