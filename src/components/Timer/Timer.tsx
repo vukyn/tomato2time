@@ -25,6 +25,9 @@ const Timer = (props: ITimer) => {
         setTimerNo(t => t + 1);
     }
 
+    const timerTitle = props.selectedTask !== undefined ? props.selectedTask.taskName :
+        tab === 'podomoro' ? 'Time to focus!' : 'Time for a break!'
+
     return (
         <Container id='timer-box' css={{ maxWidth: '480px', margin: 'auto' }}>
             <Spacer y={2} />
@@ -34,7 +37,7 @@ const Timer = (props: ITimer) => {
                 </Card.Header>
                 <Card.Divider />
                 <Card.Body css={{ textAlign: 'center' }}>
-                    <TimerBody tab={tab} changeTab={changeTabHandler} addTimerNo={addTimerNoHandler} />
+                    <TimerBody tab={tab} changeTab={changeTabHandler} timerTitle={timerTitle} addTimerNo={addTimerNoHandler} />
                 </Card.Body>
             </Card>
             <Spacer y={1} />
@@ -42,13 +45,7 @@ const Timer = (props: ITimer) => {
                 <AppText id='timer-no' opacity='true'>#{timerNo}</AppText>
             </Row>
             <Row justify='center'>
-                <AppText id='timer-title' size='md'>
-                    {
-                        props.selectedTask !== undefined ?
-                            props.selectedTask.taskName :
-                            tab === ('podomoro') ? 'Time to focus!' : 'Time for a break!'
-                    }
-                </AppText>
+                <AppText id='timer-title' size='md'> {timerTitle} </AppText>
             </Row>
         </Container>
     );

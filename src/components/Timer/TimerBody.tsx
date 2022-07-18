@@ -1,14 +1,10 @@
 import { useRef } from 'react';
 import useSound from 'use-sound';
 import { useTimer } from 'use-timer';
-import { Row, Col, Text, styled } from "@nextui-org/react";
-import CountdownButton from '../buttons/CountdownButton';
-import SkipIconButton from '../icon-buttons/SkipIconButton';
-import AddIconButton from "../icon-buttons/AddIconButton";
-import RemoveIconButton from "../icon-buttons/RemoveIconButton";
+import { Text, styled } from "@nextui-org/react";
 import ITimerBody from './interfaces/ITimerBody';
-import ITimerControl from './interfaces/ITimerControl';
 import IPomodoroTimer from './interfaces/IPomodoroTimer';
+import TimerControl from './TimerControl';
 
 // CONSTANTS
 const PODOMORO_TIME = 1500;
@@ -23,7 +19,7 @@ const TimerText = styled(Text, {
     lineHeight: '$md'
 });
 
-const displayTimer = (time: number) => {
+const displayTimer = (time: number, title: string) => {
     // Time(number)
     const _minutes = Math.floor(time / 60);
     const _seconds = time - _minutes * 60;
@@ -35,7 +31,7 @@ const displayTimer = (time: number) => {
     if (_minutes < 10) minutes = '0' + minutes;
     if (_seconds < 10) seconds = '0' + seconds;
 
-    document.title = minutes + ':' + seconds + ' - Time to concentrate!'
+    document.title = minutes + ':' + seconds + ' -' + title;
 
     return minutes + ':' + seconds;
 }
@@ -91,46 +87,16 @@ const TimerBody = (props: ITimerBody) => {
     switch (props.tab) {
         case 'podomoro':
             return <PomodoroTimer playSound={playSoundHandler} addPodomoro={addPodomoroHandler}
-                addTimerNo={props.addTimerNo} switchTab={switchTabHandler} />
+                addTimerNo={props.addTimerNo} switchTab={switchTabHandler} timerTitle={props.timerTitle} />
         case 'short break':
-            return <ShortTimer playSound={playSoundHandler} addTimerNo={props.addTimerNo} switchTab={switchTabHandler} />
+            return <ShortTimer playSound={playSoundHandler} addTimerNo={props.addTimerNo}
+                switchTab={switchTabHandler} timerTitle={props.timerTitle} />
         case 'long break':
-            return <LongTimer playSound={playSoundHandler} addTimerNo={props.addTimerNo} switchTab={switchTabHandler} />
+            return <LongTimer playSound={playSoundHandler} addTimerNo={props.addTimerNo}
+                switchTab={switchTabHandler} timerTitle={props.timerTitle} />
         default:
             return <div></div>
     }
-}
-
-const TimerControl = (props: ITimerControl) => {
-    return (
-        <Row id='control-buttons' justify='center' align='center' gap={0}>
-            <Col>
-                <Row justify='center' align='center' css={{ paddingTop: '5px' }}>
-                    {props.status !== 'RUNNING' &&
-                        <RemoveIconButton size={36} decreaseTime={props.decreaseTime} />
-                    }
-                </Row>
-            </Col>
-            <Col>
-                {
-                    props.status === 'RUNNING' ?
-                        <CountdownButton ripple={false} color='stop' size='primary' border='stop' animated={false}
-                            font='primary' onPress={props.pause}>STOP</CountdownButton> :
-                        <CountdownButton ripple={false} color='start' size='primary' border='start' animated={false}
-                            font='primary' onPress={props.start}>START</CountdownButton>
-                }
-            </Col>
-            <Col>
-                <Row justify='center' align='center' css={{ paddingTop: '5px' }}>
-                    {
-                        props.status === 'RUNNING' ?
-                            <SkipIconButton size={36} skip={props.skip} /> :
-                            <AddIconButton size={36} increaseTime={props.increaseTime} />
-                    }
-                </Row>
-            </Col>
-        </Row>
-    );
 }
 
 const PomodoroTimer = (props: IPomodoroTimer) => {
@@ -180,7 +146,7 @@ const PomodoroTimer = (props: IPomodoroTimer) => {
 
     return (
         <div id='timer-body'>
-            <TimerText id='timer-text'>{displayTimer(time)}</TimerText>
+            <TimerText id='timer-text'>{displayTimer(time, props.timerTitle)}</TimerText>
             <TimerControl start={startHandler} pause={pauseHandler} status={status} skip={skipHandler}
                 increaseTime={increaseTimeHandler} decreaseTime={decreaseTimeHandler} />
         </div>
@@ -233,7 +199,7 @@ const ShortTimer = (props: IPomodoroTimer) => {
 
     return (
         <div id='timer-body'>
-            <TimerText id='timer-text'>{displayTimer(time)}</TimerText>
+            <TimerText id='timer-text'>{displayTimer(time, props.timerTitle)}</TimerText>
             <TimerControl start={startHandler} pause={pauseHandler} status={status} skip={skipHandler}
                 increaseTime={increaseTimeHandler} decreaseTime={decreaseTimeHandler} />
         </div>
@@ -286,7 +252,7 @@ const LongTimer = (props: IPomodoroTimer) => {
 
     return (
         <div id='timer-body'>
-            <TimerText id='timer-text'>{displayTimer(time)}</TimerText>
+            <TimerText id='timer-text'>{displayTimer(time, props.timerTitle)}</TimerText>
             <TimerControl start={startHandler} pause={pauseHandler} status={status} skip={skipHandler}
                 increaseTime={increaseTimeHandler} decreaseTime={decreaseTimeHandler} />
         </div>

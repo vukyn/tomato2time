@@ -3,4 +3,5 @@ export default interface IPomodoroTimer {
     addTimerNo: any;
     switchTab: any;
     addPodomoro?: any;
+    timerTitle: string;
 }
