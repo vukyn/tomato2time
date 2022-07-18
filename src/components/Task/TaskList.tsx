@@ -17,6 +17,9 @@ const TaskList = (props: ITaskList) => {
     const [isAddTask, setIsAddTask] = useState(false);
     const [todoTasks, setTodoTasks] = useState<ITodoTask[]>([]);
 
+    // useEffect(() => {
+    //     todoTasks.push({id: '', taskName: 'test 1', estPomodoros: 5, actPomodoros: 3, isAddNote: false, isCompleted: false});
+    // });
 
     // useEffect
     useEffect(() => {

@@ -15,11 +15,11 @@ const TaskDialog = (props: ITaskDialog) => {
     // States
     const [taskName, setTaskName] = useState(props.isEdit ? props.todoTask?.taskName : '');
     const [estPomodoros, setEstPomodoros] = useState(props.isEdit ? props.todoTask?.estPomodoros : 1);
-    const [actPomodoros, setActPomodoros] = useState(props.isEdit ? props.todoTask?.actPomodoros : 0);
     const [taskNote, setTaskNote] = useState(props.isEdit ? props.todoTask?.taskNote : '');
     const [isAddNote, setIsAddNote] = useState(props.isEdit ? props.todoTask?.isAddNote : false);
     const [canSave, setCanSave] = useState(false);
     const [visible, setVisible] = useState(false);
+    const actPomodoros = props.isEdit ? props.todoTask?.actPomodoros : 0;
 
     // useEffect
     useEffect(() => {
@@ -51,7 +51,7 @@ const TaskDialog = (props: ITaskDialog) => {
     }
 
     const decreasePomodorosHandler = () => {
-        if (estPomodoros > 1)
+        if (estPomodoros > 1 && estPomodoros > actPomodoros + 1)
             setEstPomodoros(estPomodoros => estPomodoros - 1);
     }
 
@@ -92,7 +92,7 @@ const TaskDialog = (props: ITaskDialog) => {
         <div>
             <PromptModal visible={visible} confirmText='Ok' close={() => setVisible(false)} confirm={confirmPromptHandler}
                 bodyText='The change will be lost. Are you sure you want to close it?' />
-            <Card id='task-dialog' ref={wrapperRef} css={{ marginTop: 8}}>
+            <Card id='task-dialog' ref={wrapperRef} css={{ marginTop: 8 }}>
                 <Card.Body>
                     <Row css={{ paddingBottom: '8px' }}>
                         <Input underlined fullWidth aria-label='task_name'
@@ -105,7 +105,7 @@ const TaskDialog = (props: ITaskDialog) => {
                             <AppText bold size='sm' css={{ color: '#000000', paddingLeft: 5, marginBottom: 8 }}>Est Pomodoros</AppText>
                         </Row>
                         <Row>
-                            <Input underlined aria-label='task_pomodoros' readOnly
+                            <Input underlined aria-label='task_est_pomodoros' readOnly
                                 width='75px' type='number' status='primary' style={{ fontWeight: 'bold' }}
                                 value={estPomodoros.toString()} onChange={(e) => setEstPomodoros(parseInt(e.target.value))} />
                             <SpinButton ripple={false} border='primary' size='primary' onPress={decreasePomodorosHandler}>
