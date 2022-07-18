@@ -75,7 +75,7 @@ const TaskDialog = (props: ITaskDialog) => {
 
     const confirmPromptHandler = () => {
         setVisible(false);
-        props.closeTaskDialog(false);
+        props.closeTaskDialog();
     }
 
     const resetDialog = () => {

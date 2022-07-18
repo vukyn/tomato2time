@@ -1,10 +1,6 @@
 import { Row, Col } from "@nextui-org/react";
 import TabButton from '../buttons/TabButton';
-
-interface ITimerHeader {
-    tab: string;
-    changeTab: any;
-}
+import ITimerHeader from "./interfaces/ITimerHeader";
 
 const TimerHeader = (props: ITimerHeader) => {
     return (

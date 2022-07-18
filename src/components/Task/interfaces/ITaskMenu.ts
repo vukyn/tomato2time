@@ -1,4 +1,4 @@
 export default interface ITaskMenu {
-    deleteAll: any;
-    deleteCompleted: any;
+    deleteAll: () => void;
+    deleteCompleted: () => void;
 }

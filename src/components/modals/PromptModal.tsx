@@ -1,15 +1,6 @@
 import { Modal, Text } from "@nextui-org/react";
 import TextButton from "../buttons/TextButton";
-
-interface IPromptModal {
-    headerText: string;
-    bodyText: string;
-    cancelText: string;
-    confirmText: string;
-    visible: boolean;
-    close: any;
-    confirm: any;
-}
+import IPromptModal from "./interfaces/IPromptModal";
 
 const PromptModal = (props: IPromptModal) => {
 
