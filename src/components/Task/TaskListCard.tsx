@@ -11,7 +11,7 @@ const TaskListCard = (props: ITaskListCard) => {
 
     const [isEditTask, setIsEditTask] = useState(false);
 
-    const CardStyle = {
+    const cardStyle = {
         marginTop: 8,
         height: '80%',
         borderRadius: 4,
@@ -21,13 +21,22 @@ const TaskListCard = (props: ITaskListCard) => {
         }
     }
 
+    const taskNoteStyle = {
+        borderRadius: 8,
+        width: '100%',
+        padding: '10px 12px',
+        color: '#000000',
+        backgroundColor: '#fcf8de',
+        boxShadow: 'rgb(0 0 0 / 10%) 0px 1px 0px'
+    }
+
     return (
         isEditTask ?
             <TaskDialog isEdit={true} todoTask={props.todoTask} addEditTodoTask={props.addEditTodoTask}
                 deleteTodoTask={props.deleteTodoTask} closeTaskDialog={() => setIsEditTask(false)} />
             :
-            <Card isPressable isHoverable variant='flat' onPress={props.selectTodoTask}
-                css={CardStyle}>
+            <Card isPressable isHoverable disableRipple variant='flat' onPress={props.selectTodoTask}
+                css={cardStyle}>
                 <Card.Body>
                     <Row>
                         <Col>
@@ -58,6 +67,16 @@ const TaskListCard = (props: ITaskListCard) => {
                             </Row>
                         </Col>
                     </Row>
+                    {
+                        // Display note if isAddNote and note.length> 0
+                        props.todoTask.isAddNote && props.todoTask.taskNote.length > 0 ?
+                            <Row align='center' justify='center' css={{ paddingTop: 6 }}>
+                                <AppText css={taskNoteStyle}>
+                                    {props.todoTask.taskNote}
+                                </AppText>
+                            </Row>
+                            : ''
+                    }
                 </Card.Body>
             </Card>
     );

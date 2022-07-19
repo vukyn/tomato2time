@@ -61,8 +61,8 @@ const TaskDialog = (props: ITaskDialog) => {
             taskName,
             actPomodoros,
             estPomodoros,
-            taskNote,
-            isAddNote,
+            taskNote: taskNote.trim(),
+            isAddNote: taskNote.trim().length === 0 ? false : isAddNote,
             isCompleted: false
         }
         props.addEditTodoTask(todoTask, props.isEdit);
