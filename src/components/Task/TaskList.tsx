@@ -17,10 +17,6 @@ const TaskList = (props: ITaskList) => {
     const [isAddTask, setIsAddTask] = useState(false);
     const [todoTasks, setTodoTasks] = useState<ITodoTask[]>([]);
 
-    // useEffect(() => {
-    //     todoTasks.push({id: '', taskName: 'test 1', estPomodoros: 5, actPomodoros: 3, isAddNote: false, isCompleted: false});
-    // });
-
     // useEffect
     useEffect(() => {
         if (props.completedAct) {
@@ -48,8 +44,18 @@ const TaskList = (props: ITaskList) => {
         }
     }
 
-    const deleteTodoTaskHandler = (todoTask: ITodoTask) => {
-        let _todoTasks = todoTasks.filter(t => t.id !== todoTask.id);
+    const completeTaskHandler = (i: number) => {
+        let _todoTasks = [...todoTasks];
+        _todoTasks[i].isCompleted = !_todoTasks[i].isCompleted;
+        setTodoTasks(_todoTasks);
+    }
+
+    const clearActTodoTasksHandler = () => {
+        let _todoTasks = todoTasks.map(t => ({
+            ...t,
+            actPomodoros: 0,
+            isCompleted: false,
+        }));
         setTodoTasks(_todoTasks);
     }
 
@@ -57,15 +63,13 @@ const TaskList = (props: ITaskList) => {
         setTodoTasks([]);
     }
 
-    const deleteCompletedTodoTasksHandler = () => {
-        let _todoTasks = todoTasks.filter(t => t.isCompleted === false);
+    const deleteTodoTaskHandler = (todoTask: ITodoTask) => {
+        let _todoTasks = todoTasks.filter(t => t.id !== todoTask.id);
         setTodoTasks(_todoTasks);
     }
 
-
-    const completeTaskHandler = (i: number) => {
-        let _todoTasks = [...todoTasks];
-        _todoTasks[i].isCompleted = !_todoTasks[i].isCompleted;
+    const deleteCompletedTodoTasksHandler = () => {
+        let _todoTasks = todoTasks.filter(t => t.isCompleted === false);
         setTodoTasks(_todoTasks);
     }
 
@@ -74,7 +78,8 @@ const TaskList = (props: ITaskList) => {
             <Row id='task-header'>
                 <AppText bold='true' size='md'>Tasks</AppText>
                 <Container display='flex' justify='flex-end' css={{ paddingRight: '0px' }}>
-                    <TaskMenu deleteAll={deleteAllTodoTasksHandler} deleteCompleted={deleteCompletedTodoTasksHandler} />
+                    <TaskMenu deleteAll={deleteAllTodoTasksHandler}
+                        deleteCompleted={deleteCompletedTodoTasksHandler} clearAct={clearActTodoTasksHandler} />
                 </Container>
             </Row>
             <Divider color='white' opacity={0.5} size={2} />

@@ -149,6 +149,10 @@ const PomodoroTimer = (props: IPomodoroTimer) => {
     }
 
     const skipHandler = () => {
+        props.addActPomodoro();
+        props.setCompletedAct();
+        props.addPomodoro();
+        props.switchTab();
         reset();
     }
 
@@ -201,6 +205,7 @@ const ShortTimer = (props: IPomodoroTimer) => {
     }
 
     const skipHandler = () => {
+        props.switchTab();
         reset();
     }
 
@@ -253,6 +258,7 @@ const LongTimer = (props: IPomodoroTimer) => {
     }
 
     const skipHandler = () => {
+        props.switchTab();
         reset();
     }
 

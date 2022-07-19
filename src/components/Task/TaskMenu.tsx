@@ -5,7 +5,6 @@ import TaskMenuButton from "../buttons/TaskMenuButton";
 import TransparentButton from "../buttons/TransparentButton";
 import ITaskMenu from "./interfaces/ITaskMenu";
 
-
 const TaskMenu = (props: ITaskMenu) => {
     return (
         <Popover placement="bottom-right" disableAnimation>
@@ -15,13 +14,13 @@ const TaskMenu = (props: ITaskMenu) => {
                 </TransparentButton>
             </Popover.Trigger>
             <Popover.Content>
-                <TaskMenuButton size='primary' color="primary" onPress={props.deleteCompleted}>
+                <TaskMenuButton size='primary' color='primary' onPress={props.deleteCompleted}>
                     <i className='material-icons task-menu md-16' style={{ marginRight: 5, color: 'black' }}>delete</i>
                     <TaskMenuText color="black">
                         Clear completed tasks
                     </TaskMenuText>
                 </TaskMenuButton>
-                <TaskMenuButton size='primary' color="primary">
+                <TaskMenuButton size='primary' color='primary' onPress={props.clearAct}>
                     <i className='material-icons task-menu md-16' style={{ marginRight: 5, color: 'black' }}>done</i>
                     <TaskMenuText color="black">
                         Clear act pomodoros
@@ -34,9 +33,9 @@ const TaskMenu = (props: ITaskMenu) => {
                     </TaskMenuText>
                 </TaskMenuButton> */}
                 <Divider color='black' opacity={0.1} size={1} />
-                <TaskMenuButton size='primary' color="primary" onPress={props.deleteAll}>
+                <TaskMenuButton size='primary' color='primary' onPress={props.deleteAll}>
                     <i className='material-icons task-menu md-16' style={{ marginRight: 5, color: 'black' }}>delete</i>
-                    <TaskMenuText color="black">
+                    <TaskMenuText color='black'>
                         Clear all tasks
                     </TaskMenuText>
                 </TaskMenuButton>
