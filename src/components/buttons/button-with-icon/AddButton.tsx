@@ -1,12 +1,12 @@
 import { Button } from '@nextui-org/react';
 
-interface IAddIconButton {
+interface IAddButton {
     size: number;
     color: string;
     increaseTime: any;
 }
 
-const AddIconButton = (props: IAddIconButton) => {
+const AddButton = (props: IAddButton) => {
 
     const size = ' md-' + props.size;
     const color = ' ' + props.color;
@@ -20,9 +20,9 @@ const AddIconButton = (props: IAddIconButton) => {
     );
 }
 
-AddIconButton.defaultProps = {
+AddButton.defaultProps = {
     size: 18,
     color: ''
 }
 
-export default AddIconButton;
+export default AddButton;

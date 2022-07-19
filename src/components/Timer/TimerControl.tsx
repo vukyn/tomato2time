@@ -1,8 +1,8 @@
 import { Col, Row } from "@nextui-org/react";
+import AddButton from "../buttons/button-with-icon/AddButton";
+import RemoveButton from "../buttons/button-with-icon/RemoveButton";
 import SkipButton from "../buttons/button-with-icon/SkipButton";
 import CountdownButton from "../buttons/CountdownButton";
-import AddIconButton from "../icon-buttons/AddIconButton";
-import RemoveIconButton from "../icon-buttons/RemoveIconButton";
 import ITimerControl from "./interfaces/ITimerControl";
 
 
@@ -12,7 +12,7 @@ const TimerControl = (props: ITimerControl) => {
             <Col>
                 <Row justify='center' align='center' css={{ paddingTop: '5px' }}>
                     {props.status !== 'RUNNING' && props.type === 'pomodoro' ?
-                        <RemoveIconButton size={36} decreaseTime={props.decreaseTime} /> : ''
+                        <RemoveButton size={36} decreaseTime={props.decreaseTime} /> : ''
                     }
                 </Row>
             </Col>
@@ -31,7 +31,7 @@ const TimerControl = (props: ITimerControl) => {
                         props.status === 'RUNNING' ?
                             <SkipButton size={36} skip={props.skip} /> :
                             props.type === 'pomodoro' ?
-                                <AddIconButton size={36} increaseTime={props.increaseTime} /> : ''
+                                <AddButton size={36} increaseTime={props.increaseTime} /> : ''
                     }
                 </Row>
             </Col>

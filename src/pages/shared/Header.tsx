@@ -18,13 +18,13 @@ const Header = () => {
                 <Col>
                     <Container display='flex' justify='flex-end'>
                         <TransparentButton ripple={false} boxmodel='headerbtn' border='primary' size='headerbtn' color='primary' font='primary'>
-                            <i className='material-icons md-18' style={{ margin: '3px 4px 0px 0px' }}>assessment</i> Report
+                            <i className='material-icons md-18' style={{ marginRight: 4 }}>assessment</i> Report
                         </TransparentButton>
                         <TransparentButton ripple={false} boxmodel='headerbtn' border='primary' size='headerbtn' color='primary' font='primary'>
-                            <i className='material-icons md-18' style={{ margin: '3px 4px 0px 0px' }}>settings</i> Setting
+                            <i className='material-icons md-18' style={{ marginRight: 4 }}>settings</i> Setting
                         </TransparentButton>
                         <TransparentButton ripple={false} boxmodel='headerbtn' border='primary' size='headerbtn' color='primary' font='primary'>
-                            <i className='material-icons md-18' style={{ margin: '3px 4px 0px 0px' }}>account_circle</i> Login
+                            <i className='material-icons md-18' style={{ marginRight: 4 }}>account_circle</i> Login
                         </TransparentButton>
                     </Container>
                 </Col>

@@ -1,12 +1,12 @@
 import { Button } from '@nextui-org/react';
 
-interface IRemoveIconButton {
+interface IRemoveButton {
     size: number;
     color: string;
     decreaseTime: any;
 }
 
-const RemoveIconButton = (props: IRemoveIconButton) => {
+const RemoveButton = (props: IRemoveButton) => {
 
     const size = ' md-' + props.size;
     const color = ' ' + props.color;
@@ -20,9 +20,9 @@ const RemoveIconButton = (props: IRemoveIconButton) => {
     );
 }
 
-RemoveIconButton.defaultProps = {
+RemoveButton.defaultProps = {
     size: 18,
     color: ''
 }
 
-export default RemoveIconButton;
+export default RemoveButton;
