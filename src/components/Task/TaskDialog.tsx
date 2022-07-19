@@ -44,6 +44,10 @@ const TaskDialog = (props: ITaskDialog) => {
         };
     }, [wrapperRef]);
 
+    useEffect(() => {
+        wrapperRef.current.scrollIntoView({ behavior: 'smooth' })
+    });
+
     // Event handlers
     const increasePomodorosHandler = () => {
         if (estPomodoros < 10)
@@ -95,7 +99,7 @@ const TaskDialog = (props: ITaskDialog) => {
             <Card id='task-dialog' ref={wrapperRef} css={{ marginTop: 8 }}>
                 <Card.Body>
                     <Row css={{ paddingBottom: '8px' }}>
-                        <Input underlined fullWidth aria-label='task_name'
+                        <Input autoFocus underlined fullWidth aria-label='task_name'
                             status='primary' placeholder='What are you working on?'
                             size='xl' style={{ fontWeight: 'bold' }}
                             value={taskName} onChange={(e) => setTaskName(e.target.value)} />
