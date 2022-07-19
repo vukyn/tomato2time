@@ -1,5 +1,5 @@
-import Divider from "./dividers/Divider";
-import TransparentButton from "./buttons/TransparentButton";
+import Divider from "../../components/dividers/Divider";
+import TransparentButton from "../../components/buttons/TransparentButton";
 import { Container, Row, Col, Text, styled } from "@nextui-org/react";
 
 const LogoText = styled(Text, {
