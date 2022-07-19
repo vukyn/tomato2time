@@ -45,7 +45,7 @@ const TaskDialog = (props: ITaskDialog) => {
     }, [wrapperRef]);
 
     useEffect(() => {
-        wrapperRef.current.scrollIntoView({ behavior: 'smooth' })
+        wrapperRef.current.scrollIntoView();
     });
 
     // Event handlers
